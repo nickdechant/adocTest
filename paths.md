@@ -1,18 +1,24 @@
 ## Resources
-### Script Tokens
-#### Create a system wide script token.
+### RolesUser RolesEnvironment User Roles
+#### Get all user roles for specified environment.
 ```
-POST /v1/system/token_roles
+GET /v1/envs/{envName }/user_roles
 ```
 
 ##### Description
 
-Creates a specified system wide script token and returns a Response object.
+Returns a list of UserRolesBeans for the specified environment name.
+
+##### Parameters
+|Type|Name|Description|Required|Schema|Default|
+|----|----|----|----|----|----|
+|PathParameter|envName||true|string||
+
 
 ##### Responses
 |HTTP Code|Description|Schema|
 |----|----|----|
-|default|successful operation|No Content|
+|200|successful operation|UserRolesBean array|
 
 
 ##### Consumes
@@ -23,48 +29,19 @@ Creates a specified system wide script token and returns a Response object.
 
 * application/json
 
-#### Get system token's roles info for a given script name.
+#### Create a user for an environment.
 ```
-GET /v1/system/token_roles/{scriptName }
-```
-
-##### Description
-
-Returns a TokenRolesBean object containing info about a specified script token.
-
-##### Parameters
-|Type|Name|Description|Required|Schema|Default|
-|----|----|----|----|----|----|
-|PathParameter|scriptName||true|string||
-
-
-##### Responses
-|HTTP Code|Description|Schema|
-|----|----|----|
-|200|successful operation|TokenRolesBean|
-
-
-##### Consumes
-
-* application/json
-
-##### Produces
-
-* application/json
-
-#### Update a system wide token's roles.
-```
-PUT /v1/system/token_roles/{scriptName }
+POST /v1/envs/{envName }/user_roles
 ```
 
 ##### Description
 
-Updates a specified token's roles given a script name and TokenRolesBean object.
+Creates a new UserRolesBean for a specified environment name.
 
 ##### Parameters
 |Type|Name|Description|Required|Schema|Default|
 |----|----|----|----|----|----|
-|PathParameter|scriptName||true|string||
+|PathParameter|envName||true|string||
 
 
 ##### Responses
@@ -81,19 +58,273 @@ Updates a specified token's roles given a script name and TokenRolesBean object.
 
 * application/json
 
-#### Delete a system wide script token.
+#### Get user role by user and environment name.
 ```
-DELETE /v1/system/token_roles/{scriptName }
+GET /v1/envs/{envName }/user_roles/{userName }
 ```
 
 ##### Description
 
-Deletes a system wide script token by specified script name.
+Returns a UserRolesBean object containing info for the specified user and environment name.
 
 ##### Parameters
 |Type|Name|Description|Required|Schema|Default|
 |----|----|----|----|----|----|
-|PathParameter|scriptName||true|string||
+|PathParameter|envName||true|string||
+|PathParameter|userName||true|string||
+
+
+##### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|200|successful operation|UserRolesBean|
+
+
+##### Consumes
+
+* application/json
+
+##### Produces
+
+* application/json
+
+#### Update a user's role for an environment.
+```
+PUT /v1/envs/{envName }/user_roles/{userName }
+```
+
+##### Description
+
+Updates a UserRolesBean for specified user and environment name.
+
+##### Parameters
+|Type|Name|Description|Required|Schema|Default|
+|----|----|----|----|----|----|
+|PathParameter|envName||true|string||
+|PathParameter|userName||true|string||
+
+
+##### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|200|successful operation|UserRolesBean|
+
+
+##### Consumes
+
+* application/json
+
+##### Produces
+
+* application/json
+
+#### Deletes a user from an environment.
+```
+DELETE /v1/envs/{envName }/user_roles/{userName }
+```
+
+##### Description
+
+Deletes a UserRolesBean by specified user and environment name.
+
+##### Parameters
+|Type|Name|Description|Required|Schema|Default|
+|----|----|----|----|----|----|
+|PathParameter|envName||true|string||
+|PathParameter|userName||true|string||
+
+
+##### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|default|successful operation|No Content|
+
+
+##### Consumes
+
+* application/json
+
+##### Produces
+
+* application/json
+
+### RolesUser RolesSystem User Roles
+#### Get all system level user role objects.
+```
+GET /v1/system/user_roles
+```
+
+##### Description
+
+Returns a list of all system level UserRolesBeans objects.
+
+##### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|200|successful operation|UserRolesBean array|
+
+
+##### Consumes
+
+* application/json
+
+##### Produces
+
+* application/json
+
+#### Create a new system level user.
+```
+POST /v1/system/user_roles
+```
+
+##### Description
+
+Creates a system level user specified by UserRolesBean object.
+
+##### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|default|successful operation|No Content|
+
+
+##### Consumes
+
+* application/json
+
+##### Produces
+
+* application/json
+
+#### Get system level user role objects by user name.
+```
+GET /v1/system/user_roles/{userName }
+```
+
+##### Description
+
+Returns a system level UserRolesBean object containing info for the specified user name.
+
+##### Parameters
+|Type|Name|Description|Required|Schema|Default|
+|----|----|----|----|----|----|
+|PathParameter|userName||true|string||
+
+
+##### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|200|successful operation|UserRolesBean|
+
+
+##### Consumes
+
+* application/json
+
+##### Produces
+
+* application/json
+
+#### Update a system level user's role.
+```
+PUT /v1/system/user_roles/{userName }
+```
+
+##### Description
+
+Updates a system level user's role by specified user name.
+
+##### Parameters
+|Type|Name|Description|Required|Schema|Default|
+|----|----|----|----|----|----|
+|PathParameter|userName||true|string||
+
+
+##### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|200|successful operation|UserRolesBean|
+
+
+##### Consumes
+
+* application/json
+
+##### Produces
+
+* application/json
+
+#### Deletes a system level user.
+```
+DELETE /v1/system/user_roles/{userName }
+```
+
+##### Description
+
+Deletes a system level user based on specified user name.
+
+##### Parameters
+|Type|Name|Description|Required|Schema|Default|
+|----|----|----|----|----|----|
+|PathParameter|userName||true|string||
+
+
+##### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|default|successful operation|No Content|
+
+
+##### Consumes
+
+* application/json
+
+##### Produces
+
+* application/json
+
+### Script TokensEnvironment Script Tokens
+#### Get environment token's roles info for a given environment name.
+```
+GET /v1/envs/{envName }/token_roles
+```
+
+##### Description
+
+Returns a list of the specified environment's TokenRolesBean objects.
+
+##### Parameters
+|Type|Name|Description|Required|Schema|Default|
+|----|----|----|----|----|----|
+|PathParameter|envName||true|string||
+
+
+##### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|200|successful operation|TokenRolesBean array|
+
+
+##### Consumes
+
+* application/json
+
+##### Produces
+
+* application/json
+
+#### Create an environment script token.
+```
+POST /v1/envs/{envName }/token_roles
+```
+
+##### Description
+
+Creates an environment script token with specified environment name and TokenRolesBean object.
+
+##### Parameters
+|Type|Name|Description|Required|Schema|Default|
+|----|----|----|----|----|----|
+|PathParameter|envName||true|string||
 
 
 ##### Responses
@@ -200,25 +431,20 @@ Deletes a environment name and script name specified script token.
 
 * application/json
 
-#### Get environment token's roles info for a given environment name.
+### Script TokensSystem-wide Script Tokens
+#### Create a system wide script token.
 ```
-GET /v1/envs/{envName }/token_roles
+POST /v1/system/token_roles
 ```
 
 ##### Description
 
-Returns a list of the specified environment's TokenRolesBean objects.
-
-##### Parameters
-|Type|Name|Description|Required|Schema|Default|
-|----|----|----|----|----|----|
-|PathParameter|envName||true|string||
-
+Creates a specified system wide script token and returns a Response object.
 
 ##### Responses
 |HTTP Code|Description|Schema|
 |----|----|----|
-|200|successful operation|TokenRolesBean array|
+|default|successful operation|No Content|
 
 
 ##### Consumes
@@ -229,19 +455,48 @@ Returns a list of the specified environment's TokenRolesBean objects.
 
 * application/json
 
-#### Create an environment script token.
+#### Get system token's roles info for a given script name.
 ```
-POST /v1/envs/{envName }/token_roles
+GET /v1/system/token_roles/{scriptName }
 ```
 
 ##### Description
 
-Creates an environment script token with specified environment name and TokenRolesBean object.
+Returns a TokenRolesBean object containing info about a specified script token.
 
 ##### Parameters
 |Type|Name|Description|Required|Schema|Default|
 |----|----|----|----|----|----|
-|PathParameter|envName||true|string||
+|PathParameter|scriptName||true|string||
+
+
+##### Responses
+|HTTP Code|Description|Schema|
+|----|----|----|
+|200|successful operation|TokenRolesBean|
+
+
+##### Consumes
+
+* application/json
+
+##### Produces
+
+* application/json
+
+#### Update a system wide token's roles.
+```
+PUT /v1/system/token_roles/{scriptName }
+```
+
+##### Description
+
+Updates a specified token's roles given a script name and TokenRolesBean object.
+
+##### Parameters
+|Type|Name|Description|Required|Schema|Default|
+|----|----|----|----|----|----|
+|PathParameter|scriptName||true|string||
 
 
 ##### Responses
@@ -258,272 +513,19 @@ Creates an environment script token with specified environment name and TokenRol
 
 * application/json
 
-### User Roles
-#### Get user role by user and environment name.
+#### Delete a system wide script token.
 ```
-GET /v1/envs/{envName }/user_roles/{userName }
+DELETE /v1/system/token_roles/{scriptName }
 ```
 
 ##### Description
 
-Returns a UserRolesBean object containing info for the specified user and environment name.
+Deletes a system wide script token by specified script name.
 
 ##### Parameters
 |Type|Name|Description|Required|Schema|Default|
 |----|----|----|----|----|----|
-|PathParameter|envName||true|string||
-|PathParameter|userName||true|string||
-
-
-##### Responses
-|HTTP Code|Description|Schema|
-|----|----|----|
-|200|successful operation|UserRolesBean|
-
-
-##### Consumes
-
-* application/json
-
-##### Produces
-
-* application/json
-
-#### Update a user's role for an environment.
-```
-PUT /v1/envs/{envName }/user_roles/{userName }
-```
-
-##### Description
-
-Updates a UserRolesBean for specified user and environment name.
-
-##### Parameters
-|Type|Name|Description|Required|Schema|Default|
-|----|----|----|----|----|----|
-|PathParameter|envName||true|string||
-|PathParameter|userName||true|string||
-
-
-##### Responses
-|HTTP Code|Description|Schema|
-|----|----|----|
-|200|successful operation|UserRolesBean|
-
-
-##### Consumes
-
-* application/json
-
-##### Produces
-
-* application/json
-
-#### Deletes a user from an environment.
-```
-DELETE /v1/envs/{envName }/user_roles/{userName }
-```
-
-##### Description
-
-Deletes a UserRolesBean by specified user and environment name.
-
-##### Parameters
-|Type|Name|Description|Required|Schema|Default|
-|----|----|----|----|----|----|
-|PathParameter|envName||true|string||
-|PathParameter|userName||true|string||
-
-
-##### Responses
-|HTTP Code|Description|Schema|
-|----|----|----|
-|default|successful operation|No Content|
-
-
-##### Consumes
-
-* application/json
-
-##### Produces
-
-* application/json
-
-#### Get all system level user role objects.
-```
-GET /v1/system/user_roles
-```
-
-##### Description
-
-Returns a list of all system level UserRolesBeans objects.
-
-##### Responses
-|HTTP Code|Description|Schema|
-|----|----|----|
-|200|successful operation|UserRolesBean array|
-
-
-##### Consumes
-
-* application/json
-
-##### Produces
-
-* application/json
-
-#### Create a new system level user.
-```
-POST /v1/system/user_roles
-```
-
-##### Description
-
-Creates a system level user specified by UserRolesBean object.
-
-##### Responses
-|HTTP Code|Description|Schema|
-|----|----|----|
-|default|successful operation|No Content|
-
-
-##### Consumes
-
-* application/json
-
-##### Produces
-
-* application/json
-
-#### Get all user roles for specified environment.
-```
-GET /v1/envs/{envName }/user_roles
-```
-
-##### Description
-
-Returns a list of UserRolesBeans for the specified environment name.
-
-##### Parameters
-|Type|Name|Description|Required|Schema|Default|
-|----|----|----|----|----|----|
-|PathParameter|envName||true|string||
-
-
-##### Responses
-|HTTP Code|Description|Schema|
-|----|----|----|
-|200|successful operation|UserRolesBean array|
-
-
-##### Consumes
-
-* application/json
-
-##### Produces
-
-* application/json
-
-#### Create a user for an environment.
-```
-POST /v1/envs/{envName }/user_roles
-```
-
-##### Description
-
-Creates a new UserRolesBean for a specified environment name.
-
-##### Parameters
-|Type|Name|Description|Required|Schema|Default|
-|----|----|----|----|----|----|
-|PathParameter|envName||true|string||
-
-
-##### Responses
-|HTTP Code|Description|Schema|
-|----|----|----|
-|default|successful operation|No Content|
-
-
-##### Consumes
-
-* application/json
-
-##### Produces
-
-* application/json
-
-#### Get system level user role objects by user name.
-```
-GET /v1/system/user_roles/{userName }
-```
-
-##### Description
-
-Returns a system level UserRolesBean object containing info for the specified user name.
-
-##### Parameters
-|Type|Name|Description|Required|Schema|Default|
-|----|----|----|----|----|----|
-|PathParameter|userName||true|string||
-
-
-##### Responses
-|HTTP Code|Description|Schema|
-|----|----|----|
-|200|successful operation|UserRolesBean|
-
-
-##### Consumes
-
-* application/json
-
-##### Produces
-
-* application/json
-
-#### Update a system level user's role.
-```
-PUT /v1/system/user_roles/{userName }
-```
-
-##### Description
-
-Updates a system level user's role by specified user name.
-
-##### Parameters
-|Type|Name|Description|Required|Schema|Default|
-|----|----|----|----|----|----|
-|PathParameter|userName||true|string||
-
-
-##### Responses
-|HTTP Code|Description|Schema|
-|----|----|----|
-|200|successful operation|UserRolesBean|
-
-
-##### Consumes
-
-* application/json
-
-##### Produces
-
-* application/json
-
-#### Deletes a system level user.
-```
-DELETE /v1/system/user_roles/{userName }
-```
-
-##### Description
-
-Deletes a system level user based on specified user name.
-
-##### Parameters
-|Type|Name|Description|Required|Schema|Default|
-|----|----|----|----|----|----|
-|PathParameter|userName||true|string||
+|PathParameter|scriptName||true|string||
 
 
 ##### Responses
