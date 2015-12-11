@@ -1,26 +1,26 @@
 == Resources
-=== Agents
-==== Get host info
+=== Script Tokens
+==== Create an environment script token.
 ----
-GET /v1/agents/{hostName }
+POST /v1/envs/{envName }/token_roles
 ----
 
 ===== Description
 :hardbreaks:
-Returns a list of objects with host info for specified host name
+Creates an environment script token with specified environment name and TokenRolesBean object.
 
 ===== Parameters
 [options="header"]
 |===
 |Type|Name|Description|Required|Schema|Default
-|PathParameter|hostName||true|string|
+|PathParameter|envName||true|string|
 |===
 
 ===== Responses
 [options="header"]
 |===
 |HTTP Code|Description|Schema
-|200|successful operation|<<AgentBean>> array
+|default|successful operation|No Content
 |===
 
 ===== Consumes
@@ -31,7 +31,133 @@ Returns a list of objects with host info for specified host name
 
 * application/json
 
-=== Roles
+==== Get environment token's roles info for a given environment name.
+----
+GET /v1/envs/{envName }/token_roles
+----
+
+===== Description
+:hardbreaks:
+Returns a list of the specified environment's TokenRolesBean objects.
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|envName||true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|successful operation|<<TokenRolesBean>> array
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+==== Delete an environment script token.
+----
+DELETE /v1/envs/{envName }/token_roles/{scriptName }
+----
+
+===== Description
+:hardbreaks:
+Deletes a environment name and script name specified script token.
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|envName||true|string|
+|PathParameter|scriptName||true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|default|successful operation|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+==== Update a specified environment's script token.
+----
+PUT /v1/envs/{envName }/token_roles/{scriptName }
+----
+
+===== Description
+:hardbreaks:
+Update a specific environment script token specified by environment and script names.
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|envName||true|string|
+|PathParameter|scriptName||true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|default|successful operation|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+==== Get a token's roles info for a given environment name and script name.
+----
+GET /v1/envs/{envName }/token_roles/{scriptName }
+----
+
+===== Description
+:hardbreaks:
+Returns a TokenRolesBean object containing info about a specified script token.
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|envName||true|string|
+|PathParameter|scriptName||true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|successful operation|<<TokenRolesBean>>
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
 ==== Delete a system wide script token.
 ----
 DELETE /v1/system/token_roles/{scriptName }
@@ -139,6 +265,38 @@ Creates a specified system wide script token and returns a Response object.
 |===
 |HTTP Code|Description|Schema
 |default|successful operation|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+=== Agents
+==== Get host info
+----
+GET /v1/agents/{hostName }
+----
+
+===== Description
+:hardbreaks:
+Returns a list of objects with host info for specified host name
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|hostName||true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|successful operation|<<AgentBean>> array
 |===
 
 ===== Consumes
