@@ -1,0 +1,151 @@
+== Resources
+=== Agents
+==== Get host info
+----
+GET /v1/agents/{hostName }
+----
+
+===== Description
+:hardbreaks:
+Returns a list of objects with host info for specified host name
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|hostName||true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|successful operation|<<AgentBean>> array
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+=== Roles
+==== Delete a system wide script token.
+----
+DELETE /v1/system/token_roles/{scriptName }
+----
+
+===== Description
+:hardbreaks:
+Deletes a system wide script token by specified script name.
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|scriptName||true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|default|successful operation|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+==== Update a system wide token's roles.
+----
+PUT /v1/system/token_roles/{scriptName }
+----
+
+===== Description
+:hardbreaks:
+Updates a specified token's roles given a script name and TokenRolesBean object.
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|scriptName||true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|default|successful operation|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+==== Get system token's roles info for a given script name.
+----
+GET /v1/system/token_roles/{scriptName }
+----
+
+===== Description
+:hardbreaks:
+Returns a TokenRolesBean object containing info about a specified script token.
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|scriptName||true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|successful operation|<<TokenRolesBean>>
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+==== Create a system wide script token.
+----
+POST /v1/system/token_roles
+----
+
+===== Description
+:hardbreaks:
+Creates a specified system wide script token and returns a Response object.
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|default|successful operation|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
